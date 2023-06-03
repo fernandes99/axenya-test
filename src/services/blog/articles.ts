@@ -35,7 +35,7 @@ export const getCategoryBySlug = (slug: string) => {
 
     return axios.get(`${config.url.base}/api/dato/articles/categories/${slug}`)
         .then(response => {
-            console.log('RESPONSEEE', response)
+            console.log('RESPONSEEE')
             return response?.data?.allArticleCategories[0];
         })
         .catch(error => console.log('ERROOOOOOOR', error));
