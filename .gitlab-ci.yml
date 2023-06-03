@@ -1,0 +1,20 @@
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - cd /app/axenya-website
+    - git config --global --add safe.directory /app/axenya-website
+    - git pull
+    - npm install
+    - pgrep -x "node" && killall node
+    - nohup npm run build
+    - nohup npm run start -- --port 3001 </dev/null &>/dev/null&
+
+ 
+  only:
+   - production
+  tags:
+    - novo-site
+
