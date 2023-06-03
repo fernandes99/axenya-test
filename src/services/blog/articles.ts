@@ -1,3 +1,4 @@
+import axios from "axios";
 import { BLOG_CACHE_TIME, HOME_CACHE_TIME } from "../../constants/time";
 import { config } from "../../helpers/configs";
 
@@ -32,11 +33,10 @@ export const getAllCategories = () => {
 export const getCategoryBySlug = (slug: string) => {
     console.log('getCategoryBySlug', slug);
 
-    return fetch(`${config.url.base}/api/dato/articles/categories/${slug}`, { next: { revalidate: 0 } })
-        .then(response => response.json())
-        .then(result => {
-            console.log('REEEEEEESULT', result)
-            return result.data.allArticleCategories[0];
+    return axios.get(`${config.url.base}/api/dato/articles/categories/${slug}`)
+        .then(response => {
+            console.log('RESPONSEEE', response)
+            return response?.data?.allArticleCategories[0];
         })
         .catch(error => console.log('ERROOOOOOOR', error));
 }

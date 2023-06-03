@@ -22,14 +22,10 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<any>> {
 export async function getStaticProps({
     params,
   }: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    console.log('LOG - CATEGORIAS/[SLUG]');
-    
     try {
         const slug = params?.slug as string;
         const category = await getCategoryBySlug(slug);
         const articles = await getAllArticlesByCategoryId(category?.id);
-
-        console.log('LOG - CATEGORIAS/[SLUG]', category);
 
         if (!articles || !category) {
             return {
