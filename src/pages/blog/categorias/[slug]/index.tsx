@@ -22,31 +22,23 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult<any>> {
 export async function getStaticProps({
     params,
   }: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    try {
-        const slug = params?.slug as string;
-        const category = await getCategoryBySlug(slug);
-        const articles = await getAllArticlesByCategoryId(category?.id);
+    const slug = params?.slug as string;
+    const category = await getCategoryBySlug(slug);
+    const articles = await getAllArticlesByCategoryId(category?.id);
 
-        if (!articles || !category) {
-            return {
-                notFound: true
-            }
-        }
-
-        return {
-            props: {
-                articles,
-                category
-            },
-            revalidate: BLOG_CACHE_TIME
-        };
-    }
-    catch(error) {
-        console.log('ERROR TRY CATCH');
+    if (!articles || !category) {
         return {
             notFound: true
         }
     }
+
+    return {
+        props: {
+            articles,
+            category
+        },
+        revalidate: BLOG_CACHE_TIME
+    };
 }
 
 type ArticlePageProps = {
