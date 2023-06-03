@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.log('LOG -> API/DATO/ARTICLES/CATEGORIES');
+    
     const url = 'https://graphql.datocms.com/';
     
     if (!process.env.DATOCMS_KEY) {
@@ -14,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         );
 
         const { slug } = req.query as any;
+        console.log('LOG -> API/DATO/ARTICLES/CATEGORIES slug', slug);
         const result = await fetch(url, {
             method: 'POST',
             headers: {
