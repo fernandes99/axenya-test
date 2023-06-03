@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /homolog/
+Disallow: /
 
 Sitemap: https://axenya.com/sitemap
