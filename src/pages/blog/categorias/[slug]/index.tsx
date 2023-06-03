@@ -36,6 +36,14 @@ export async function getStaticProps({
                 notFound: true
             }
         }
+
+        return {
+            props: {
+                articles,
+                category
+            },
+            revalidate: BLOG_CACHE_TIME
+        };
     }
     catch(error) {
         console.log('ERROR TRY CATCH', error);
@@ -43,14 +51,6 @@ export async function getStaticProps({
             notFound: true
         }
     }
-
-    return {
-        props: {
-            articles,
-            category
-        },
-        revalidate: BLOG_CACHE_TIME
-    };
 }
 
 type ArticlePageProps = {
