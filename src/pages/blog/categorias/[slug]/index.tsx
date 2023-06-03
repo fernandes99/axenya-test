@@ -42,7 +42,7 @@ export async function getStaticProps({
         };
     }
     catch(error) {
-        console.log('ERROR TRY CATCH', error);
+        console.log('ERROR TRY CATCH');
         return {
             notFound: true
         }
