@@ -32,7 +32,7 @@ export const getAllCategories = () => {
 export const getCategoryBySlug = (slug: string) => {
     console.log('getCategoryBySlug', slug);
 
-    return fetch(`${config.url.base}/api/dato/articles/categories?slug=${slug}`, { next: { revalidate: 0 } })
+    return fetch(`${config.url.base}/api/dato/articles/categories/${slug}`, { next: { revalidate: 0 } })
         .then(response => response.json())
         .then(result => result.data.allArticleCategories[0]);
 }

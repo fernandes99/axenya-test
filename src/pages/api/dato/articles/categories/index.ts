@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    console.log('LOG -> API/DATO/ARTICLES/CATEGORIES');
-    
     const url = 'https://graphql.datocms.com/';
     
     if (!process.env.DATOCMS_KEY) {
@@ -15,8 +13,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             'no-cache, no-store, max-age=0, must-revalidate'
         );
 
-        const { slug } = req.query as any;
-        console.log('LOG -> API/DATO/ARTICLES/CATEGORIES slug', slug);
         const result = await fetch(url, {
             method: 'POST',
             headers: {
@@ -24,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 'Authorization': process.env.DATOCMS_KEY
             },
             body: JSON.stringify({
-                query: getQueryAllCategories(slug),
+                query: queryAllCategories,
             }),
         })
         .then((res) => res.json());
@@ -36,9 +32,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 }
 
-export const getQueryAllCategories = (slug: '') => `
+export const queryAllCategories = `
     {
-        allArticleCategories (filter: { slug: ${slug ? `{ eq: "${slug}" }` : `{}`}}) {
+        allArticleCategories {
             id
             name
             slug
