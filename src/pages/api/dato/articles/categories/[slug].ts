@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
         .then((res) => res.json());
 
-        return res.status(200).send(result);
+        return res.status(200).json(result);
     }
     catch (e) {
         return res.status(404).send({ error: e });
