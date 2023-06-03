@@ -14,18 +14,24 @@ export const getArticle = (slug: string) => {
 }
 
 export const getAllArticlesByCategoryId = (categoryId: string) => {
+    console.log('getAllArticlesByCategoryId', categoryId);
+
     return fetch(`${config.url.base}/api/dato/articles?categoryId=${categoryId}`, { next: { revalidate: 0 } })
         .then(response => response.json())
         .then(result => result.data?.allArticles);
 }
 
 export const getAllCategories = () => {
+    console.log('getAllCategories');
+
     return fetch(`${config.url.base}/api/dato/articles/categories`, { next: { revalidate: BLOG_CACHE_TIME } })
         .then(response => response.json())
         .then(result => result.data.allArticleCategories);
 }
 
 export const getCategoryBySlug = (slug: string) => {
+    console.log('getCategoryBySlug', slug);
+
     return fetch(`${config.url.base}/api/dato/articles/categories?slug=${slug}`, { next: { revalidate: 0 } })
         .then(response => response.json())
         .then(result => result.data.allArticleCategories[0]);
