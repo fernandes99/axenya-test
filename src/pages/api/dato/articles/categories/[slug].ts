@@ -7,11 +7,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).send({ error: "DatoCMS Key Not Found" });
     }
 
+    console.log('TESTEEEEE  SLUG ON CATEGORIES API SLUG')
+
     try {
         res.setHeader(
             'Cache-Control',
             'no-cache, no-store, max-age=0, must-revalidate'
         );
+
+        console.log('API/DATO/ARTICLES/CATEGORIES QUERY', req.query)
 
         const { slug } = req.query as any;
         const result = await fetch(url, {
