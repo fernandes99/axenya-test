@@ -38,5 +38,5 @@ export const getCategoryBySlug = (slug: string) => {
             console.log('RESPONSEEE', response.data)
             return response?.data?.data?.allArticleCategories?.[0];
         })
-        .catch(error => console.log('ERROOOOOOOR', error));
+        .catch(error => console.log('ERROOOOOOOR'));
 }
