@@ -34,5 +34,9 @@ export const getCategoryBySlug = (slug: string) => {
 
     return fetch(`${config.url.base}/api/dato/articles/categories/${slug}`, { next: { revalidate: 0 } })
         .then(response => response.json())
-        .then(result => result.data.allArticleCategories[0]);
+        .then(result => {
+            console.log('REEEEEEESULT', result)
+            return result.data.allArticleCategories[0];
+        })
+        .catch(error => console.log('ERROOOOOOOR', error));
 }

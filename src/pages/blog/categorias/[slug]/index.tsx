@@ -24,13 +24,21 @@ export async function getStaticProps({
   }: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
     console.log('LOG - CATEGORIAS/[SLUG]');
     
-    const slug = params?.slug as string;
-    const category = await getCategoryBySlug(slug);
-    const articles = await getAllArticlesByCategoryId(category?.id);
+    try {
+        const slug = params?.slug as string;
+        const category = await getCategoryBySlug(slug);
+        const articles = await getAllArticlesByCategoryId(category?.id);
 
-    console.log('LOG - CATEGORIAS/[SLUG]', category);
+        console.log('LOG - CATEGORIAS/[SLUG]', category);
 
-    if (!articles || !category) {
+        if (!articles || !category) {
+            return {
+                notFound: true
+            }
+        }
+    }
+    catch(error) {
+        console.log('ERROR TRY CATCH', error);
         return {
             notFound: true
         }
