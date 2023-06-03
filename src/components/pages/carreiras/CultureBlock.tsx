@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { BiBrain, BiBulb, BiChart, BiConversation, BiGroup, BiTrendingUp, BiUserCheck } from 'react-icons/bi';
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { CultureItem, CultureList, GroupImages, IconBox } from "../../../pages/carreiras/index.styles";
 import { Col, Row } from "../../../styles/grid";
 import { Text } from "../../../styles/text";
+import { S } from "styles/pages/career/styles";
 
 const cultureList = [
     {
@@ -67,15 +67,15 @@ export const CultureBlock = () => {
 
             <Row gap="24px">
                 <Col count={2}>
-                    <CultureList>
+                    <S.CultureList>
                         {cultureList?.map((item, index) => (
-                            <CultureItem
+                            <S.CultureItem
                                 onClick={() => handleItemsExpanded(index)}
                                 key={index}
                             >
-                                <IconBox style={{ marginBottom: 'auto' }}>
+                                <S.IconBox style={{ marginBottom: 'auto' }}>
                                     {item.icon}
-                                </IconBox>
+                                </S.IconBox>
                                 <div>
                                     <Text
                                         as="p"
@@ -101,17 +101,17 @@ export const CultureBlock = () => {
                                     ? <BsChevronUp size={24} color="#afafaf" style={{ marginBottom: 'auto' }} />
                                     : <BsChevronDown size={24} color="#afafaf" />
                                 }
-                            </CultureItem>
+                            </S.CultureItem>
                         ))}
-                    </CultureList>
+                    </S.CultureList>
                 </Col>
                 <Col count={1} style={{ position: 'relative' }}>
-                    <GroupImages>
+                    <S.GroupImages>
                         <div>
                             <img src="https://www.datocms-assets.com/87998/1674074347-grupo-axenya-01.png" alt="Grupo de pessoas Axenya" />
                             <img src="https://www.datocms-assets.com/87998/1674074324-grupo-axenya-02.png" alt="Grupo de pessoas Axenya" />
                         </div>
-                    </GroupImages>
+                    </S.GroupImages>
                 </Col>
             </Row>
         </>

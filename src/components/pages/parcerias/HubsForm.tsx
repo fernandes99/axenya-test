@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Button, CheckBox, Form, InputBox, InputsBox, SelectBox, SelectFormPartner } from "../../../pages/parcerias/[slug]/index.styles";
 import { GSheetService } from "../../../services/gsheet";
 import { MailchimpService } from "../../../services/mailchimp/sendLead";
 import { Text } from "../../../styles/text";
 import theme from "../../../styles/theme";
 import { Input } from "../../input";
 import { sendSalesForce } from "../../../services/salesforce";
+import { S } from "styles/pages/partner/styles";
 
 const initialForm = {
     cnpj: '',
@@ -166,7 +166,7 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
     }
 
     return (
-        <Form onSubmit={onSubmit}>
+        <S.Form onSubmit={onSubmit}>
             <Input
                 placeholder="CNPJ"
                 name="cnpj"
@@ -207,50 +207,50 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                 errorMessage={errors.office?.message}
                 onChange={e => setValue('office', e.target.value)}
             />
-            <SelectBox>
+            <S.SelectBox>
                 <label>
                     Abrangência de cobertura
                 </label>
-                <SelectFormPartner {...register("coverage")} hasError={!!errors.coverage}>
+                <S.SelectFormPartner {...register("coverage")} hasError={!!errors.coverage}>
                     <option value='Cobertura Nacional'>
                         Cobertura Nacional
                     </option>
                     <option value='Cobertura Regional'>
                         Cobertura Regional
                     </option>
-                </SelectFormPartner>
-            </SelectBox>
-            <SelectBox>
+                </S.SelectFormPartner>
+            </S.SelectBox>
+            <S.SelectBox>
                 <label>
                     Modelo de contrato
                 </label>
-                <SelectFormPartner {...register("contract")} hasError={!!errors.contract}>
+                <S.SelectFormPartner {...register("contract")} hasError={!!errors.contract}>
                     <option value='Compulsório'>
                         Compulsório (obrigação de entrada de 100% dos funcionários registrados no FGTS)
                     </option>
                     <option value='Adesão'>
                         Adesão (entrada optativa)
                     </option>
-                </SelectFormPartner>
-            </SelectBox>
-            <SelectBox>
+                </S.SelectFormPartner>
+            </S.SelectBox>
+            <S.SelectBox>
                 <label>
                     Acomodação
                 </label>
-                <SelectFormPartner {...register("accommodation")} hasError={!!errors.accommodation}>
+                <S.SelectFormPartner {...register("accommodation")} hasError={!!errors.accommodation}>
                     <option value='Apartamento'>
                         Apartamento
                     </option>
                     <option value='Enfermaria'>
                         Enfermaria
                     </option>
-                </SelectFormPartner>
-            </SelectBox>
-            <SelectBox>
+                </S.SelectFormPartner>
+            </S.SelectBox>
+            <S.SelectBox>
                 <label>
                     Coparticipação
                 </label>
-                <SelectFormPartner {...register("coparticipation")} hasError={!!errors.coparticipation}>
+                <S.SelectFormPartner {...register("coparticipation")} hasError={!!errors.coparticipation}>
                     <option value='Sim'>
                         Sim
                     </option>
@@ -260,13 +260,13 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                     <option value='Ambos'>
                         Ambos
                     </option>
-                </SelectFormPartner>
-            </SelectBox>
+                </S.SelectFormPartner>
+            </S.SelectBox>
             <div>
                 <Text as="p" category="s2" weight="bold" color={!!errors.category ? '#ff6161' : theme.colors.white}>
                     Categoria:
                 </Text>
-                <CheckBox>
+                <S.CheckBox>
                     <label htmlFor="category1">
                         <b>Básico</b> (cobertura regional, sem reembolso, produtos de entrada)
                     </label>
@@ -276,8 +276,8 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                         onChange={(event: any) => handleCategoryCheckbox("Básico", event.target.checked)}
                         value="Básico"
                     />
-                </CheckBox>
-                <CheckBox>
+                </S.CheckBox>
+                <S.CheckBox>
                     <label htmlFor="category2">
                         <b>Intermedário</b> (cobertura nacional, reembolsos, rede credenciada mais agrangente)
                     </label>
@@ -287,8 +287,8 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                         onChange={(event: any) => handleCategoryCheckbox("Intermedário", event.target.checked)}
                         value="Intermedário"
                     />
-                </CheckBox>
-                <CheckBox>
+                </S.CheckBox>
+                <S.CheckBox>
                     <label htmlFor="category3">
                         <b>Executivo</b> (cobertura nacional, rede credenciada de melhores hospitais, laboratórios e clínicas)
                     </label>
@@ -298,8 +298,8 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                         onChange={(event: any) => handleCategoryCheckbox("Executivo", event.target.checked)}
                         value="Executivo"
                     />
-                </CheckBox>
-                <CheckBox>
+                </S.CheckBox>
+                <S.CheckBox>
                     <label htmlFor="category4">
                         <b>Premium</b> (mesma rede credenciada do plano Executivo, com maior nível de reembolso e mais serviços )
                     </label>
@@ -309,15 +309,15 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                         onChange={(event: any) => handleCategoryCheckbox("Premium", event.target.checked)}
                         value="Premium"
                     />
-                </CheckBox>
+                </S.CheckBox>
             </div>
             <div>
                 <Text as="p" category="s2" weight="bold" color={!!errors.category ? '#ff6161' : theme.colors.white}>
                     Por favor preencha com a quantidade de vidas (titulares + dependentes) em cada faixa etária:
                 </Text>
-                <InputsBox>
+                <S.InputsBox>
                     {oldGroup.map((old: any, index) => (
-                        <InputBox key={index}>
+                        <S.InputBox key={index}>
                             <Text as="p" category="s1" color={theme.colors.white} align="right">
                                 {old}
                             </Text>
@@ -329,14 +329,14 @@ export const HubsForm = ({ onSuccess, onError, setLoading, partner }: IHubsFormP
                                 type="number"
                                 style={{ width: '100%', padding: '8px 8px 8px 16px' }}
                             />
-                        </InputBox>
+                        </S.InputBox>
                     ))}
-                </InputsBox>
+                </S.InputsBox>
             </div>
 
-            <Button type='submit'>
+            <S.Button type='submit'>
                 Enviar
-            </Button>
-        </Form>
+            </S.Button>
+        </S.Form>
     )
 }

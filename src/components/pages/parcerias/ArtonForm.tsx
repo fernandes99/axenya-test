@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { Button, Form } from "../../../pages/parcerias/[slug]/index.styles";
 import { GSheetService } from "../../../services/gsheet";
 import { MailchimpService } from "../../../services/mailchimp/sendLead";
 import { Input } from "../../input";
 import { sendSalesForce } from "../../../services/salesforce";
+import { S } from "styles/pages/partner/styles";
 
 const initialForm = {
     cnpj: '',
@@ -74,7 +74,7 @@ export const ArtonForm = ({ onSuccess, onError, setLoading, partner }: IArtonFor
     });
 
     return (
-        <Form onSubmit={onSubmit}>
+        <S.Form onSubmit={onSubmit}>
             <Input
                 placeholder="CNPJ"
                 {...register("cnpj", {
@@ -150,9 +150,9 @@ export const ArtonForm = ({ onSuccess, onError, setLoading, partner }: IArtonFor
             />
 
 
-            <Button type='submit'>
+            <S.Button type='submit'>
                 Enviar
-            </Button>
-        </Form>
+            </S.Button>
+        </S.Form>
     )
 }

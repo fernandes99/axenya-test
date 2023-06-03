@@ -4,12 +4,12 @@ import Head from "next/head";
 import { ArticleType, CategoryType } from "../../../../types/dato/blog.types";
 import { getAllArticlesByCategoryId, getCategoryBySlug } from "../../../../services/blog/articles";
 import { BLOG_CACHE_TIME } from "../../../../constants/time";
-import { TopNav, TopNavContent } from "../../[slug]/index.styles";
 import { Col, Layout, Row } from "../../../../styles/grid";
 import { config } from "../../../../helpers/configs";
 import { Text } from "../../../../styles/text";
-import { ArticleList, BlogContent } from "../../index.styles";
 import theme from "../../../../styles/theme";
+import { TopNav, TopNavContent } from "styles/pages/blog/article/styles";
+import { S } from "styles/pages/blog/styles";
 
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult<any>> {
@@ -75,7 +75,7 @@ const ArticlePage = ({ articles, category }: ArticlePageProps) => {
                 </Layout>
             </TopNav>
 
-            <BlogContent>
+            <S.BlogContent>
                 <Layout>
                     <Row gap="24px">
                         <Col count={3}>
@@ -106,7 +106,7 @@ const ArticlePage = ({ articles, category }: ArticlePageProps) => {
                             >
                                 {articles.length} artigos publicados
                             </Text>
-                            <ArticleList>
+                            <S.ArticleList>
                                 {articles.map((article, index) => (
                                     <li key={index}>
                                         <a href={`${config.url.base}/blog/${article.slug}`} title={`Ver mais`}>
@@ -131,11 +131,11 @@ const ArticlePage = ({ articles, category }: ArticlePageProps) => {
                                         </a>
                                     </li>
                                 ))}
-                            </ArticleList>
+                            </S.ArticleList>
                         </Col>
                     </Row>
                 </Layout>
-            </BlogContent>
+            </S.BlogContent>
         </>
     )
 }

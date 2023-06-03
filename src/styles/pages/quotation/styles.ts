@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import theme from "../../styles/theme";
+import theme from "styles/theme";
 
 export const S = {
     Section: styled.section<{ bg?: string, p?: string }>`
